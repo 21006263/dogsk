@@ -1,0 +1,60 @@
+.card{
+    
+  
+    height:350px;
+    width: 300px;
+    box-shadow: 0 20px 20px black ;
+    overflow: hidden;
+    margin: 20px;
+    text-align: center;
+    transition: all 0.25s;
+    background-color: #f5dbe8;
+    opacity: 90% ;
+    border-radius:15px;
+    
+    
+
+
+}
+.img{
+    height: 50%;
+    width:50%;
+    display: block;
+    margin:auto;
+border-radius: 3%;
+
+    object-fit: cover;
+box-shadow: black;
+}
+
+.name{
+
+    font: bold 20px Arial, Helvetica;
+    text-decoration: black;
+    color: black;
+    outline: none;
+    text-align:center;
+
+}
+
+
+
+.text{
+    color: black;
+    margin: 1%;
+    font:  bold 15px Arial, Helvetica;
+    text-align:center;
+}
+
+.click{
+    text-align:center;
+    font: italic 15px  Helvetica,Arial;
+}
+
+.error{
+    font:  bold 40px Arial, Helvetica;
+    color: rgb(8, 8, 8);
+    border: 5px solid red;
+
+    text-align: center;
+}

@@ -1,0 +1,16 @@
+.loader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  /* background-image: url(../Image/cargando.gif); */
+  background-repeat: no-repeat;
+    font-size: 60px;
+    padding: 20px;
+     margin-top: 10%; 
+     left: 0px;
+    top: 0px;
+    z-index: -1;
+    opacity: .8;
+  }
+   

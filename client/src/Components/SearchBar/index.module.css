@@ -1,0 +1,54 @@
+.formul {
+     padding: 20px 20px 5px 35px;   /*margen con valores: arriba - derecha - abajo - izquierda */
+    font-family:verdana,arial;
+    font-size:9pt;
+}
+
+.input{
+
+
+     height: 30px;
+    width: 300px; 
+    background-color: white;
+    font: bolder 12px Arial, Helvetica;
+    font-size: 18px;
+    margin-top: 60px;
+    border: 3px solid rgb(241, 21, 175);
+    margin-left: -250% ;
+    border-radius: 28px;
+    text-align: center;
+    background: url(../Image/lupa.png) ;
+    background-size: 30px;
+    background-repeat:  no-repeat;
+    background-position: 10px;
+}
+    
+
+    
+
+
+.boton{
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 28px;
+    background-color: #f5dbe8;
+    border: 3px solid rgb(241, 21, 175);
+    color:black;
+    text-align: center;
+    font: bolder 12px Arial, Helvetica;
+    padding: 10px;
+    width: 100px;
+    margin: 5px;
+  
+
+}
+
+
+    .boton:hover {
+        background-color: #fd0dad;
+    background-image: linear-gradient(#751164, #f048aa);
+
+    }
+    .boton:valid, textarea:valid {
+        color: black;
+    }
