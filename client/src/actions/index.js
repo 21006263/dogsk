@@ -27,7 +27,7 @@
       export function getDogs() { //!! trae todos los dogs desde mi Api
         return async function (dispatch) {
             try {
-                var json = await axios.get("//dogs");
+                var json = await axios.get("/api/dogs/",{});
     
                 return dispatch({
                     type: GET_DOGS,
@@ -55,7 +55,7 @@
 export function getTemperaments() { //!!trae los temps de mi Api
 	return async function (dispatch) {
 		try {
-			var json = await axios.get(`//temperament/`);
+			var json = await axios.get("/api/temperaments/",{});
 			return dispatch({
 				type: GET_TEMPERAMENT,
 				payload: json.data,
@@ -69,7 +69,7 @@ export function getTemperaments() { //!!trae los temps de mi Api
 export function searchByName(name) {
 	return async function (dispatch) {
 		try {
-			const json = await axios.get('//dogs?name=' + name);
+			const json = await axios.get('/api/dogs?name=' + name);
 			//const json = await axios.get("http://localhost:3001/Dog/get?name= + name");
 
 			return dispatch({
@@ -89,7 +89,7 @@ export function postDog(payload) { // el payload me llega del form, es el obj a 
     
 	return async function () {
         
-        var json = await axios.post(`//dogs`, payload); //le paso x BODY el obj creado en el form
+        var json = await axios.post(`/api/dogs`, payload); //le paso x BODY el obj creado en el form
 		// console.log("REGISTRO CREADO: ",json)
 		return json;
     
@@ -102,7 +102,7 @@ export function postDog(payload) { // el payload me llega del form, es el obj a 
 export function getDogDetail(id) {
 	return async function (dispatch) {
 		try {
-			var json = await axios.get(`//dogs/` + id);
+			var json = await axios.get(`/api/dogs/${id}`,{});
 
 			return dispatch({
 				type: GET_DOG_DETAIL_ID,
