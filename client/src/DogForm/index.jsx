@@ -1,8 +1,8 @@
 
-///////////////////////////////////////////////////////
+
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link, /*useHistory*/ } from "react-router-dom";
+import { Link,  } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { postDog, getTemperaments } from "../actions/index";
 import Styles from "./index.module.css";
@@ -40,12 +40,12 @@ export default function DogForm() {
   });
 
   useEffect(() => {
-    //para llenar el estado temperaments disparando la action
+    
     dispatch(getTemperaments());
   }, [dispatch ]);
 
 
-  function handleInputChange(e) {//cdo se cambia algun campo ()
+  function handleInputChange(e) {
     e.preventDefault();
 
     setObjForm({
@@ -53,7 +53,7 @@ export default function DogForm() {
        [e.target.name]: e.target.value,
     });
 
-    setErrors(  // ejecuta la fc validate sobre los value
+    setErrors(  
       validate({
         ...objForm,
         [e.target.name]: e.target.value,
@@ -62,7 +62,7 @@ export default function DogForm() {
   }
 
 
-  function handleSelect(e) { // cada vez q  se agrega un temp
+  function handleSelect(e) { 
     e.preventDefault();
 
     setObjForm({
@@ -75,14 +75,14 @@ export default function DogForm() {
     });
   }
 
-  function handleDelete(el) { // para borrar un temp ya agregado
+  function handleDelete(el) { 
     setObjForm({
       ...objForm,
       temperaments: objForm.temperaments.filter((t) => t !== el),
     });
   }
 
-  function clearForm() { // limpia el Form y los errores, cdo se quiere crear otra raza
+  function clearForm() { 
     setObjForm({
       name: "",
       height: "",
@@ -95,12 +95,12 @@ export default function DogForm() {
     setErrors({});
   }
 
-  function handleSubmit(e) { // cdo se envia el form con CREAR
+  function handleSubmit(e) { 
     e.preventDefault();
-    dispatch(postDog(objForm));//se despacha la acción
+    dispatch(postDog(objForm));
     alert("Raza creada con éxito!!");
 
-    //history.push('/home');// me redirige al Home
+    
   }
   
 

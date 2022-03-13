@@ -53,7 +53,7 @@ const getAllData = async () => { //concatena lo de la api + lo de la BD
     }
 }
 
-const getOneByIdAPI = async function(idRaza){  // funcion que busca una raza por id en la Api
+const getOneByIdAPI = async function(idRaza){  
 
     var allDogs= await getInfoAPI();
     for(var i=0; i< allDogs.length; i++){
@@ -64,20 +64,20 @@ const getOneByIdAPI = async function(idRaza){  // funcion que busca una raza por
 }
 
 
-const getOneByIdBD = async function(idRaza){// Para encontrar un dog en la BD por id UUIV
+const getOneByIdBD = async function(idRaza){
     try {
         var oneDogBD= await Dog.findByPk(idRaza, {
             include: Temperament
         }); 
         if(oneDogBD){  
-            var tp= oneDogBD.Temperaments.map( t => t.dataValues.nameTemp);//guerda los temps asociados en un array(tp)
+            var tp= oneDogBD.Temperaments.map( t => t.dataValues.nameTemp);
             
-            var dogDetail= {  //seteo un objeto ppara devolver los datos listos
+            var dogDetail= {  
                 name: oneDogBD.name,
                 height: oneDogBD.height,
                 weight: oneDogBD.weight,
                 life_span: oneDogBD.life_span,
-                temperament: tp.join(', '),//al array tp , lo muestra como string
+                temperament: tp.join(', '),
                 image: oneDogBD.image
             } 
             
@@ -90,18 +90,17 @@ const getOneByIdBD = async function(idRaza){// Para encontrar un dog en la BD po
 }
 
 
-const addTemperaments = async function(t,d){// agrega los temperamentos pasados en el array, al crear un dog
+const addTemperaments = async function(t,d){
 
     t=capitalizar(t);
     var [temp, creado]= await Temperament.findOrCreate({
         where: {nameTemp: t}
     })
-    await d.addTemperaments(temp); //vincula el perro con el temperamento
-    //await temp.addDogs(d); //vincula el temperamento con el perro 
+    await d.addTemperaments(temp); 
     
 }
 
-const capitalizar = function(str){    // capitaliza un string
+const capitalizar = function(str){    
         return str.replace(/\w\S*/g, function(txt){
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         });

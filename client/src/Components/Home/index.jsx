@@ -32,36 +32,36 @@ export default function Home() {
   };
 
 
-  //Para disparar la accion getDogs(), y llenar el Estado con los dogs
+  
   useEffect(() => {
     dispatch(getDogs());
   }, [dispatch]);
-  //Para disparar la accion getTemps(), y llenar el estado con los temperamentos
+  
   useEffect(() => {
     dispatch(getTemperaments());
   }, [dispatch]);
 
 
-  //funcion para tomar el select de temperamentos y despachar la accion de filtrar temp, para renderizar los dogs fitrados
+  
   function handleFilterTemp(event) {
     dispatch(filterByTemperament(event.target.value));
     setPagActual(1);
   }
 
-  //funcion para tomar el select de Razas Todas / Creadas / Existentes y despachar la accion filterByCreated
+  
   function handleFilterCreated(e) {
     dispatch(filterByCreated(e.target.value));
     setPagActual(1);
   }
 
-  // funcion para ordenar las razas en orden asc o desc cdo se selecciona el select, y despacha la accion orderByName
+  
   function handleABC(ev) {
     ev.preventDefault();
     dispatch(orderByName(ev.target.value));
     setPagActual(1);
   }
 
-  //funcion para ordenar las razas x > o < peso, se despacha orderByWeight
+  
   function handleWeight(e) {
     e.preventDefault();
     dispatch(orderByWeight(e.target.value));

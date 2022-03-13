@@ -6,16 +6,14 @@ import { getDogDetail } from "../../actions";
 import Styles from "./index.module.css";
 import Loader from "../Loader";
 
-export default function DogDetail() { //renderiza la card detallada de una raza
-  const { id } = useParams();//-->la obtengo con este hook, porque en el rout de mi App le especifico "/dogDetail/:id"
-  const myDog = useSelector((state) => state.detail); //traigo el estado detail
+export default function DogDetail() { 
+  const { id } = useParams();
+  const myDog = useSelector((state) => state.detail); 
 
-  // console.log("ID DEL DOG: ", id);
+  
   const dispatch = useDispatch();
 
-  // useEffect(() => { //llena el estado Detail despachando esa fc=> el estado es 1 solo obj
-  //   dispatch(getDogDetail(id));
-  // } , [dispatch, id]);
+  
 
   
   const [Loadin, setLoadin] = useState (false)
@@ -77,7 +75,7 @@ export default function DogDetail() { //renderiza la card detallada de una raza
             
             { <div className={Styles.peso} >Temperamento: {myDog.temperament}</div> }
             
-            {/* <div className={Styles.peso} >Price: {myDog.price}</div> */}
+           
             
             
             <Link  to="/home">
@@ -92,5 +90,6 @@ export default function DogDetail() { //renderiza la card detallada de una raza
     </div>
   )
 }
+
 
 

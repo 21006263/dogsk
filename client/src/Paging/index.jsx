@@ -7,7 +7,7 @@ export default function Paging({ dogsPorPag, allDogs, paginado}) {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(allDogs / dogsPorPag); i++) {
-    pageNumbers.push(i); // tiene la cant de paginas que necesito mapear
+    pageNumbers.push(i); 
 
   }
   return (

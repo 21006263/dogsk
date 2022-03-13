@@ -24,7 +24,7 @@ function Reducer(state = initialState, action) {
 			return {
 				...state,
 				dogs: action.payload,
-				Alldogs: action.payload, // aca crea otra copia de dogs, q nunca se va a tocar(p/los filtrados)
+				Alldogs: action.payload, 
 			};
 
 		case GET_TEMPERAMENT:
@@ -53,7 +53,7 @@ function Reducer(state = initialState, action) {
 			}
 
 		case FILTER_BY_TEMP:
-			let dogsF = state.Alldogs; // siempre me traigo todos los dogs del estado inmutable
+			let dogsF = state.Alldogs; 
 			let tempFilter = [];
 
 			if (action.payload === "All") {
@@ -70,7 +70,7 @@ function Reducer(state = initialState, action) {
 			}
 			return {
 				...state,
-				dogs: tempFilter, //guardo los dogs filtrados en el estado filtrado, no toco allDogs
+				dogs: tempFilter, 
 			};
 
 
@@ -104,7 +104,7 @@ function Reducer(state = initialState, action) {
 		case ORDER_BY_NAME:
 			const dogsOr = [...state.dogs];
 
-			// var ordedDogs =
+			
 			action.payload === "asc"
 				? dogsOr.sort(function (a, b) {
 					//asc
@@ -136,19 +136,19 @@ function Reducer(state = initialState, action) {
 			var dogsW = [...state.dogs];
 
 			for (let i = 0; i < dogsW.length; i++) {
-				var peso = dogsW[i].weight.split("-"); //array
+				var peso = dogsW[i].weight.split("-"); 
 				if (peso[0] && peso[1] && peso[0].trim() === "NaN") peso[0] = peso[1];
 				if (peso[1] && peso[0] && peso[1].trim() === "NaN") peso[1] = peso[0];
 
 				if (dogsW[i].weight === "NaN") {
-					//p/setar el pmnin y q me ponga el NaN al final
+					
 					dogsW[i].pmin = 100;
 				} else {
 					dogsW[i].pmin = parseInt(peso[0].trim());
 				}
 
 				if (peso.length > 1) {
-					//p/setear el pmax
+					
 					dogsW[i].pmax = parseInt(peso[1].trim());
 				} else {
 					dogsW[i].pmax = dogsW[i].pmin;
@@ -157,13 +157,13 @@ function Reducer(state = initialState, action) {
 
 			if (action.payload === "min") {
 				dogsW.sort(function (a, b) {
-					//return a.pmin - b.pmin; //por menor del peso min
-					return (a.pmin + a.pmax) / 2 - (b.pmin + b.pmax) / 2; //xpromedio
+					
+					return (a.pmin + a.pmax) / 2 - (b.pmin + b.pmax) / 2; 
 				});
 			} else if (action.payload === "max") {
 				dogsW.sort(function (a, b) {
-					//return b.pmax - a.pmax;//por mayor del peso max
-					return (b.pmin + b.pmax) / 2 - (a.pmin + a.pmax) / 2; //por promedio
+					
+					return (b.pmin + b.pmax) / 2 - (a.pmin + a.pmax) / 2; 
 				});
 			}
 			return {

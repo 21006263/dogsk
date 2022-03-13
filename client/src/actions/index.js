@@ -11,20 +11,7 @@
 
 
 
-    // export function Dogs(){
-       
-    //     return function (dispatch) {
-    
-    //        
-    //         dispatch({ 
-    //             type: OBTENER_DOG, 
-    //             payload: dogs
-    //         });
-    //       });
-    //     };
-    //   }
-    
-      export function getDogs() { //!! trae todos los dogs desde mi Api
+      export function getDogs() { 
         return async function (dispatch) {
             try {
                 var json = await axios.get("/dogs");
@@ -38,21 +25,9 @@
             }
         };
     }
-// export function Dogs() { //TODO trae todos los dogs desde mi API
-// 	return async function (dispatch) {
-//         try{
-//         const api = await axios.get("http://localhost:3001/Dog/get");
-//         return dispatch({
-//             type: OBTENER_DOG,
-//             payload: api.data
-//         })
-//     }catch(error){
-//         console.log("No se encontraron obtener las razas", error)
-//     }
 
-//TODO conectamos el back con get/temperaments
 
-export function getTemperaments() { //!!trae los temps de mi Api
+export function getTemperaments() { 
 	return async function (dispatch) {
 		try {
 			var json = await axios.get(`/temperament`);
@@ -70,7 +45,7 @@ export function searchByName(name) {
 	return async function (dispatch) {
 		try {
 			const json = await axios.get('/dogs?name=' + name);
-			//const json = await axios.get("http://localhost:3001/Dog/get?name= + name");
+		
 
 			return dispatch({
 				type: GET_NAME_DOGS,
@@ -85,12 +60,12 @@ export function searchByName(name) {
 
 }
 //!! CONECTA CON EL BACK (post /dogs) // agrega una nueva raza
-export function postDog(payload) { // el payload me llega del form, es el obj a crear en la tabla
+export function postDog(payload) { 
     
 	return async function () {
         
-        var json = await axios.post(`/dogs`, payload); //le paso x BODY el obj creado en el form
-		// console.log("REGISTRO CREADO: ",json)
+        var json = await axios.post(`/dogs`, payload); 
+		
 		return json;
     
 		};
@@ -102,7 +77,7 @@ export function postDog(payload) { // el payload me llega del form, es el obj a 
 export function getDogDetail(id) {
 	return async function (dispatch) {
 		try {
-			var json = await axios.get(`/dogs` + id);
+			var json = await axios.get(`/dogs/` + id);
 
 			return dispatch({
 				type: GET_DOG_DETAIL_ID,
@@ -114,9 +89,9 @@ export function getDogDetail(id) {
 		
 	};
 }
-// el payload es el value del select=> un temp de la lista
+
 export function filterByTemperament(payload) {
-	// el payload es el value del select=> un temp de la lista
+	
 	console.log(payload);
 	return {
 		type: FILTER_BY_TEMP,
@@ -124,7 +99,7 @@ export function filterByTemperament(payload) {
 	};
 }
 
-// payload es el value del select
+
 export function filterByCreated(payload) {
 
 	return {
@@ -135,14 +110,14 @@ export function filterByCreated(payload) {
 
 
 export function orderByName(order) {
-    // payload es el value de este select(asc/desc)
+    
     return {
         type: ORDER_BY_NAME,
         payload: order
     }
     };
     export function orderByWeight(payload) {
-        //payload es el value de este select
+       
         return {
             type: ORDER_BY_WEIGHT,
             payload,

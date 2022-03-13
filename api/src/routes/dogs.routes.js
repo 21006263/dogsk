@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-const { Dog } = require('../db');  // me traigo los modelos
+const { Dog } = require('../db');  
 
 
-//Todas las fcnes de esta ruta estan en:
+
 const {
     getAllData,
     getOneByIdAPI,
@@ -17,10 +17,10 @@ const {
 router.post('/', async (req,res) =>{
     var {name, height, weight, life_span, temperaments, image}= req.body; //!! temperaments es un array
     
-    if (!name || !height || !weight){ //campos allowNull: false (valores nulos)
+    if (!name || !height || !weight){ 
         return res.send('faltan datos ')
     }
-    name=capitalizar(name);  //fc q capitaliza string
+    name=capitalizar(name); 
     try{
         const[dog, created]= await Dog.findOrCreate({
             where:{
@@ -33,9 +33,9 @@ router.post('/', async (req,res) =>{
                 image: image     
             }   
         });
-        if ( created===true && temperaments!==undefined){ //se crean los temperaments pasados x body
+        if ( created===true && temperaments!==undefined){ 
             temperaments.forEach( te => {
-                addTemperaments(te, dog);  //fc q agrega los temps en la tabla Temperament y los asocia al dog
+                addTemperaments(te, dog);  
             })   
         }
         res.status(200).send("Raza creada con éxito");  
@@ -46,19 +46,19 @@ router.post('/', async (req,res) =>{
 });
 
 ///  RUTA (GET)  /DOGS   y query ?=name:
-router.get('/', async (req,res) =>{  //   RUTA /dogs ( total y x query name)
-    const {name}= req.query;   //raza por query!!!
+router.get('/', async (req,res) =>{  
+    const {name}= req.query;   
        
-    const allData= await getAllData();   //fc q devuelve la info de la Api y de la BD concatenada en un array de {}
+    const allData= await getAllData();   
 
-    const dataPpal = await allData.map(el => {  // para devolver solo la info de la ruta ppal
+    const dataPpal = await allData.map(el => {  
 
-        if(el.hasOwnProperty('createInDb')){  //si es de la BD
-            let tp= el.Temperaments.map( t => t.nameTemp); //convierte los Temps asociados en un array
+        if(el.hasOwnProperty('createInDb')){  
+            let tp= el.Temperaments.map( t => t.nameTemp); 
             return {
-                id:el.id,//para poder tomar la id
+                id:el.id,
                 name: el.name,
-                temperament: tp.join(', '), // muestra el array como string 
+                temperament: tp.join(', '), 
                 createInDb: el.createInDb,
                 weight: el.weight,
                 image: el.image
@@ -78,7 +78,7 @@ router.get('/', async (req,res) =>{  //   RUTA /dogs ( total y x query name)
         let dogNames = await dataPpal.filter (el => el.name.toLowerCase().includes(name.toLowerCase()));
         
         if(dogNames.length >0){
-            res.status(200).json(dogNames);  //es un arary de las coincidencias
+            res.status(200).json(dogNames);  
         }
         else {
             res.status(200).send(["error"])
@@ -90,21 +90,21 @@ router.get('/', async (req,res) =>{  //   RUTA /dogs ( total y x query name)
 
 
 //RUTA (GET) /DOGS params idRaza
-router.get('/:idRaza', async (req,res)=> {  // ruta para encontrar una raza en particular (el front me manda la id), 
+router.get('/:idRaza', async (req,res)=> {  
                                             
     var {idRaza}=req.params;
      
     try {
-        if(idRaza.length===36){  // es por que es una id de UUID => de mi bd
+        if(idRaza.length===36){  
 
-            var oneDogBD= await getOneByIdBD(idRaza);  // fc. q busca en la BD un dog x id 
+            var oneDogBD= await getOneByIdBD(idRaza);  
             if(oneDogBD){
                 res.status(200).json(oneDogBD);
             }else{
                 res.send('Raza no encontrada')
             }
         }else{   // busca en la Api
-            var oneDog= await getOneByIdAPI(idRaza); //fc que busca un dog en la Api x id
+            var oneDog= await getOneByIdAPI(idRaza);
             if (oneDog){
                 res.status(200).json(oneDog);
             }else{
