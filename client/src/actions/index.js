@@ -14,7 +14,7 @@
       export function getDogs() { 
         return async function (dispatch) {
             try {
-                var json = await axios.get("/dogs");
+                var json = await axios.get("https://dogprojects.herokuapp.com/dogs");
     
                 return dispatch({
                     type: GET_DOGS,
@@ -30,7 +30,7 @@
 export function getTemperaments() { 
 	return async function (dispatch) {
 		try {
-			var json = await axios.get(`/temperament`);
+			var json = await axios.get(`https://dogprojects.herokuapp.com/temperament`);
 			return dispatch({
 				type: GET_TEMPERAMENT,
 				payload: json.data,
@@ -44,7 +44,7 @@ export function getTemperaments() {
 export function searchByName(name) {
 	return async function (dispatch) {
 		try {
-			const json = await axios.get('/dogs?name=' + name);
+			const json = await axios.get('https://dogprojects.herokuapp.com/dogs?name=' + name);
 		
 
 			return dispatch({
@@ -64,7 +64,7 @@ export function postDog(payload) {
     
 	return async function () {
         
-        var json = await axios.post(`/dogs`, payload); 
+        var json = await axios.post(`https://dogprojects.herokuapp.com/dogs`, payload); 
 		
 		return json;
     
@@ -77,7 +77,7 @@ export function postDog(payload) {
 export function getDogDetail(id) {
 	return async function (dispatch) {
 		try {
-			var json = await axios.get(`/dogs/` + id);
+			var json = await axios.get(`https://dogprojects.herokuapp.com/dogs/` + id);
 
 			return dispatch({
 				type: GET_DOG_DETAIL_ID,
