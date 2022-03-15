@@ -16,7 +16,7 @@ export default function Home() {
 
   const dispatch = useDispatch();
 
-  var razas = useSelector((state) => state.dogs);//me traigo los Dogs del estado
+  var razas = useSelector((state) => state.Alldogs);//me traigo los Dogs del estado
 
   const allTemps = useSelector((state) => state.temps); //me traigo los temperamentos del Estado
 
