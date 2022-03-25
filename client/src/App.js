@@ -1,8 +1,8 @@
 import {BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-import DogDetail from './Components/DogDetail';
-import LandingPage from './Components/Landing'
-import Home from './Components/Home';
+import DogDetail from './components/DogDetail';
+import LandingPage from './components/Landing'
+import Home from './components/Home';
 import DogForm from './DogForm/index';
 
 function App() {
