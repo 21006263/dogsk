@@ -3,11 +3,10 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {getDogs, getTemperaments, filterByTemperament, filterByCreated, orderByName, orderByWeight, } from "../../actions/index";
 import DogCard from "../DogCard/Cards";
-import Paging from "../../Paging/index";
+import Paging from "../Paging/index";
 import SearchBar from "../SearchBar/index.jsx";
 import Styles from "./index.module.css";
-import style from'./index.module.css';
-import cargando from '../Image/cargando.gif'
+
 
 
 
@@ -99,69 +98,35 @@ export default function Home() {
           </select>
 
           <select className={Styles.select} name="temps" onChange={(event) => handleFilterTemp(event)}>
-            <option className={Styles.options} value="All" key={100}>Filtro por Temperamento</option>
+            <option className={Styles.options} value="All" key={100}>Filtro x Temperamento</option>
             {allTemps.map((t) => (
               <option className={Styles.options} key={t.id} value={t.nameTemp}>
                 {t.nameTemp}
               </option>
             ))}
           </select>
-        <div >
+        </div>
+
+        <div className={Styles.select}>
           <NavLink className={Styles.link} to="/">Volver a Inicio</NavLink>
         </div>
-         
-        </div>
-          
-           <div  >
-            <NavLink className={Styles.link} to="/newDog">Crear Nueva Raza</NavLink>
-          </div> 
+
         <div className={Styles.navDer}>
           <div>
             <SearchBar />
           </div>
 
-        
-          
-
-
+          <div className={Styles.select}>
+            <NavLink className={Styles.link} to="/newDog">Crear Nueva Raza</NavLink>
+          </div>
 
           {/* <button onClick={(e) => handleOnClick(e)}>Cargar toda las Razas</button> */}
         </div>
       </nav>
 
 
-      
-
-    {/*  LISTADO DE RAZAS - Cards(paginadas) - x cada card renderiza <DogCard/> */}
-    <div className={Styles.cards}>
-      {
-      currentDogs.length > 0 ? (
-        
-        currentDogs?.map((el) => {
-          return (
-              <DogCard
-                id={el.id}
-                name={el.name}
-                temperament={el.temperament}
-                image={el.image ? el.image : "imagen no encontrada"}
-                weight={el.weight}
-                />
-                );
-            })
-          ) : (
-             <h1 className={style.loader}>
-                 <img src={cargando} alt='hola'/>
-                </h1>
-          )}
-      </div>
-
-      <span className={Styles.nroPag}> Pag. {pagActual}</span>
-
-
-
-    </div>
-    {/* paginado, le paso props*/}
-    <div >
+      {/* paginado, le paso props*/}
+      <div >
         <Paging
           dogsPorPag={dogsPorPag}
           allDogs={razas.length}
@@ -169,7 +134,30 @@ export default function Home() {
         />
 
       </div>
+
+    {/*  LISTADO DE RAZAS - Cards(paginadas) - x cada card renderiza <OneDog/> */}
+      <div className={Styles.cards}>
+        {currentDogs?.map((el) => {
+          return (
+            <div>
+              <DogCard
+                id={el.id}
+                name={el.name}
+                temperament={el.temperament}
+                image={el.image ? el.image : "imagen no encontrada"}
+                weight={el.weight}
+              />
+            </div>
+          );
+        })}
+      </div>
+
+      <span className={Styles.nroPag}> Pag. {pagActual}</span>
+
+
+
+    </div>
     </nav>
   );
-  
 }
+

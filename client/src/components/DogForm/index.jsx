@@ -4,7 +4,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link,  } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { postDog, getTemperaments } from "../actions/index";
+import { postDog, getTemperaments } from "../../actions/index";
 import Styles from "./index.module.css";
 
 
