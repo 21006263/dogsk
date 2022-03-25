@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from 'react-router-dom'; 
 // import { Link } from "react-router-dom";
 import styles from "./index.module.css";
-import dog from '../Image/dog.jpg'
+import dog from '../../Image/dog.jpg'
 
 export default function Landing(){
     const history = useHistory(); 

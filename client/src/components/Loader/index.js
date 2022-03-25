@@ -1,5 +1,5 @@
 import { React } from 'react';
-import cargando from '../Image/cargando.gif'
+import cargando from '../../Image/cargando.gif'
 import style from'./index.module.css';
 
 
