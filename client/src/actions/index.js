@@ -27,7 +27,7 @@
       export function getDogs() { 
         return async function (dispatch) {
             try {
-                var json = await axios.get("/dogs");
+                var json = await axios.get(`/dogs`);
     
                 return dispatch({
                     type: GET_DOGS,
@@ -57,7 +57,7 @@ export function getTemperaments() {
 export function searchByName(name) {
 	return async function (dispatch) {
 		try {
-			const json = await axios.get('/dogs?name=' + name);
+			const json = await axios.get(`/dogs?name=` + name);
 		
 
 			return dispatch({
