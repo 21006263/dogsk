@@ -6,7 +6,8 @@ import DogCard from "../DogCard/Cards";
 import Paging from "../../Paging/index";
 import SearchBar from "../SearchBar/index.jsx";
 import Styles from "./index.module.css";
-
+import style from'./index.module.css';
+import cargando from '../Image/cargando.gif'
 
 
 
@@ -134,7 +135,7 @@ export default function Home() {
     {/*  LISTADO DE RAZAS - Cards(paginadas) - x cada card renderiza <DogCard/> */}
     <div className={Styles.cards}>
       {
-    
+      currentDogs.length > 0 ? (
         
         currentDogs?.map((el) => {
           return (
@@ -147,11 +148,11 @@ export default function Home() {
                 />
                 );
             })
-          }
-          ) ;
-          )
-          
-          
+          ) : (
+             <h1 className={style.loader}>
+                 <img src={cargando} alt='hola'/>
+                </h1>
+          )}
       </div>
 
       <span className={Styles.nroPag}> Pag. {pagActual}</span>
